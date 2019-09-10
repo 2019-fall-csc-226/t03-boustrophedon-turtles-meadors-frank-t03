@@ -5,27 +5,24 @@
 #               Frankb
 #
 # Assignment: T03: Boustrophedon Turtles and Functions
-# Purpose:
+# Purpose: To create a square and fill it in with boustrophedon patterns
 #################################################################################
 # Acknowledgements:
 #
 #
 #################################################################################
-
+# Import turtle library and create a turtle
+#################################################################################
 import turtle
-wn = turtle.Screen()
-wn.bgcolor('black')
 
-meadors = turtle.Turtle()
-meadors.color('deep sky blue')
-meadors.pensize(25)
-#meadors.penup()
 
+#################################################################################
+# define functions to create a square using
+#################################################################################
 def square_turtle(x, y, size):
     """
-    Docstring for function_1
+    Creates a square of defined size.
     """
-
     meadors.penup()
     meadors.goto(x, y)
     meadors.pendown()
@@ -39,51 +36,70 @@ def square_turtle(x, y, size):
 
 def squiggle_right():
     """
-    Docstring for function_2
+    Uses turtle to fill a line left to right
     """
     for cross_space in range(12):
-        meadors.forward(20)
-        meadors.right(90)
-        meadors.forward(20)
-        meadors.right(90)
-        meadors.forward(20)
-        meadors.left(90)
-        meadors.forward(20)
-        meadors.left(90)
+        for first_arc in range(2):
+            meadors.forward(20)
+            meadors.right(90)
+        for second_arc in range(2):
+            meadors.forward(20)
+            meadors.left(90)
     # ...
+
 
 def squiggle_left():
     """
-    Docstring for function_2
+    Uses Turtle to fill a line from right to left
     """
     for cross_space in range(12):
-        meadors.left(90)
-        meadors.forward(20)
-        meadors.left(90)
-        meadors.forward(20)
-        meadors.right(90)
-        meadors.forward(20)
-        meadors.right(90)
-        meadors.forward(20)
+        for first_arc in range(2):
+            meadors.left(90)
+            meadors.forward(20)
+        for second_arc in range(2):
+            meadors.right(90)
+            meadors.forward(20)
     # ...
+
 
 def main():
     """
-    Docstring for main
+    Function Starts all the other functions
+    Makes and fills a square
     """
-    meadors.speed(0)
-    square_turtle(-260, -260, 500)
+    # Call function to make square and size it
+    square_turtle(-260, -260, 520)
+
+    # move turtle to fill start point
     meadors.penup()
     meadors.pencolor('green')
     meadors.goto(-240, -240)
     meadors.pendown()
     meadors.setheading(90)
-    for fill in range(4):
+
+    # call both squiggle functions to fill in area
+    for fill in range(6):
         squiggle_right()
-        meadors.forward(100)
+        meadors.forward(60)
         squiggle_left()
         meadors.forward(20)
     # ...
 
+    # fill in last remaining line
+    meadors.right(90)
+    meadors.forward(480)
+
+
+############################################################################
+# set up the screen and turtle, then let the main function do its things
+############################################################################
+wn = turtle.Screen()
+wn.bgcolor('black')
+
+meadors = turtle.Turtle()
+meadors.color('deep sky blue')
+meadors.pensize(20)
+meadors.speed(0)
 main()
+
 wn.exitonclick()
