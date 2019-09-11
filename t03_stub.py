@@ -19,22 +19,22 @@ import turtle
 #################################################################################
 # define functions to create a square using
 #################################################################################
-def square_turtle(x, y, size):
+def square_turtle(name, x, y, size):
     """
     Creates a square of defined size.
     """
-    meadors.penup()
-    meadors.goto(x, y)
-    meadors.pendown()
-    meadors.setheading(0)
+    name.penup()
+    name.goto(x, y)
+    name.pendown()
+    name.setheading(0)
     for side in range(4):
-        meadors.forward(size)
-        meadors.left(90)
-
-    # ...
+        name.forward(size)
+        name.left(90)
 
 
-def squiggle_right():
+
+
+def squiggle_right(meadors):
     """
     Uses turtle to fill a line left to right
     """
@@ -45,20 +45,20 @@ def squiggle_right():
         for second_arc in range(2):
             meadors.forward(20)
             meadors.left(90)
-    # ...
 
 
-def squiggle_left():
+
+def squiggle_left(t):
     """
     Uses Turtle to fill a line from right to left
     """
     for cross_space in range(12):
         for first_arc in range(2):
-            meadors.left(90)
-            meadors.forward(20)
+            t.left(90)
+            t.forward(20)
         for second_arc in range(2):
-            meadors.right(90)
-            meadors.forward(20)
+            t.right(90)
+            t.forward(20)
     # ...
 
 
@@ -67,8 +67,16 @@ def main():
     Function Starts all the other functions
     Makes and fills a square
     """
+    wn = turtle.Screen()
+    wn.bgcolor('black')
+
+    meadors = turtle.Turtle()
+    meadors.color('deep sky blue')
+    meadors.pensize(20)
+    meadors.speed(0)
+
     # Call function to make square and size it
-    square_turtle(-260, -260, 520)
+    square_turtle(meadors, -260, -260, 520)
 
     # move turtle to fill start point
     meadors.penup()
@@ -79,9 +87,9 @@ def main():
 
     # call both squiggle functions to fill in area
     for fill in range(6):
-        squiggle_right()
+        squiggle_right(meadors)
         meadors.forward(60)
-        squiggle_left()
+        squiggle_left(meadors)
         meadors.forward(20)
     # ...
 
@@ -89,17 +97,12 @@ def main():
     meadors.right(90)
     meadors.forward(480)
 
+    wn.exitonclick()
+
 
 ############################################################################
 # set up the screen and turtle, then let the main function do its things
 ############################################################################
-wn = turtle.Screen()
-wn.bgcolor('black')
-
-meadors = turtle.Turtle()
-meadors.color('deep sky blue')
-meadors.pensize(20)
-meadors.speed(0)
 main()
 
-wn.exitonclick()
+
